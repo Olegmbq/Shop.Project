@@ -1,0 +1,939 @@
+/* ================== ЛОГИН АДМИНА ================== */
+
+/* 🎨 Светлая тема — читаемость */
+:root {
+  --text: #1b1030;
+  --text-accent: #3e1a74;
+  --price: #5a008c;
+}
+
+/* 🌙 Тёмная тема */
+.dark {
+  --text: #fff;
+  --text-accent: #d9b8ff;
+  --price: #e8d0ff;
+}
+
+/* Общие элементы */
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+.admin-page,
+.admin-card,
+.admin-form,
+.admin-edit-page {
+  background: var(--card) !important;
+  color: var(--text);
+}
+
+.admin-login-page {
+  background: linear-gradient(180deg, #0a0714, #120b22);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #fff;
+  font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.admin-login-box {
+  width: 380px;
+  padding: 35px 32px 28px;
+  background: rgba(20, 10, 33, 0.9);
+  border-radius: 20px;
+  border: 1px solid rgba(150, 60, 255, 0.5);
+  box-shadow: 0 0 25px rgba(150, 60, 255, 0.7);
+  text-align: left;
+  backdrop-filter: blur(10px);
+}
+
+.admin-login-box h1 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 4px;
+  text-shadow: 0 0 12px #b266ff, 0 0 25px #8619ff;
+}
+
+.admin-subtitle {
+  text-align: center;
+  color: #c5a5ff;
+  margin-bottom: 18px;
+}
+
+/* переключатель темы сверху справа */
+.theme-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+/* поля формы */
+.admin-login-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-login-box label {
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.admin-login-box input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  background: #e5e8ff;
+  outline: none;
+}
+
+.admin-login-box input:focus {
+  box-shadow: 0 0 0 2px #b266ff;
+}
+
+/* ошибка */
+.admin-error {
+  color: #ff5b5b;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* кнопка "Войти в панель" */
+.admin-btn {
+  margin-top: 14px;
+  width: 100%;
+  padding: 11px 0;
+  border-radius: 12px;
+  border: none;
+  background: #b266ff;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.admin-btn:hover {
+  background: #c989ff;
+  box-shadow: 0 0 18px #c989ff;
+  transform: translateY(-1px);
+}
+
+/* ================== ПАНЕЛЬ АДМИНА ================== */
+
+.admin-page {
+  padding: 20px 40px;
+  color: #fff;
+  background: linear-gradient(180deg, #0a0714, #120b22);
+  min-height: 100vh;
+  font-family: "Rubik", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Шапка */
+.admin-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(170, 0, 255, 0.4);
+}
+
+.admin-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-shadow: 0 0 12px #b266ff, 0 0 25px #8619ff;
+}
+
+.admin-top-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* кнопка темы в панели */
+.theme-btn {
+  background: #23103b;
+  border: 1px solid #8a2eff;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: #d7b7ff;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.theme-btn:hover {
+  background: #36185a;
+  box-shadow: 0 0 12px #9d4aff;
+}
+
+/* кнопка Выйти */
+.admin-logout {
+  background: #ff4e6e;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.admin-logout:hover {
+  background: #ff2d58;
+  box-shadow: 0 0 10px #ff2d58;
+}
+
+/* кнопка "На сайт" (если есть) */
+.admin-home {
+  background: #6b2bff;
+  border: none;
+  padding: 10px 16px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.admin-home:hover {
+  background: #7a41ff;
+  box-shadow: 0 0 12px #7a41ff;
+}
+
+/* сетка товаров */
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+/* карточка товара */
+.admin-card {
+  background: rgba(25, 9, 43, 0.85);
+  border: 1px solid rgba(150, 60, 255, 0.4);
+  padding: 18px;
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 18px rgba(150, 60, 255, 0.25);
+  transition: 0.25s;
+}
+
+.admin-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 25px rgba(150, 60, 255, 0.5);
+}
+
+/* фото */
+.admin-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* категория и цена */
+.ap-cat {
+  color: #c9a0ff;
+  font-size: 14px;
+  margin: 4px 0 2px;
+}
+
+.ap-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e8d0ff;
+  margin-bottom: 12px;
+}
+
+/* кнопки под карточкой */
+.ap-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ap-edit {
+  background: #6b2bff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ap-edit:hover {
+  background: #7c44ff;
+  box-shadow: 0 0 12px #7c44ff;
+}
+
+.ap-delete {
+  background: #ff4e4e;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ap-delete:hover {
+  background: #ff2e2e;
+  box-shadow: 0 0 12px #ff2e2e;
+}
+.admin-add-btn {
+  background: #7b4bff;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 12px;
+  border: none;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 20px 0;
+}
+
+.admin-add-btn:hover {
+  background: #9c6dff;
+  box-shadow: 0 0 12px #b78aff;
+}
+/* ======= Добавление товара ======= */
+
+.admin-add-page {
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+  color: #fff;
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #d9b8ff;
+  text-shadow: 0 0 15px #b46cff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Кнопка назад */
+.back-btn {
+  background: rgba(180, 80, 255, 0.15);
+  border: 1px solid #c48cff;
+  color: #e3c5ff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.back-btn:hover {
+  background: rgba(200, 120, 255, 0.25);
+  box-shadow: 0 0 10px #ba78ff;
+}
+
+/* Форма */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(178, 107, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(150, 70, 255, 0.25);
+}
+
+.admin-form label {
+  font-size: 16px;
+  margin-bottom: -5px;
+  color: #ceaaff;
+}
+
+.admin-form input,
+.admin-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid #b46cff;
+  background: rgba(255, 255, 255, 0.07);
+  color: white;
+  transition: 0.25s;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+  outline: none;
+  border-color: #d299ff;
+  box-shadow: 0 0 12px #c07aff;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* Кнопка "Добавить товар" */
+.submit-btn {
+  background: #8d4bff;
+  border: none;
+  padding: 12px 22px;
+  color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #a46cff;
+  box-shadow: 0 0 12px #c397ff;
+}
+.admin-add-page {
+  padding: 20px 40px;
+}
+
+.admin-add-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #e2c4ff;
+  text-shadow: 0 0 12px #b26bff;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid rgba(178, 107, 255, 0.3);
+}
+
+.admin-form input,
+.admin-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: #1a1a25;
+  color: #fff;
+  border: 1px solid #7d4dff;
+}
+
+.admin-form textarea {
+  height: 150px;
+  resize: none;
+}
+
+.admin-preview {
+  width: 200px;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 0 10px #b26bff;
+}
+
+.admin-btn-big {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background: #9d5bff;
+  border: none;
+  color: white;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.admin-btn-big:hover {
+  background: #b97dff;
+  box-shadow: 0 0 12px #c28bff;
+}
+/* === Контейнер === */
+.admin-edit-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: rgba(20, 10, 40, 0.6);
+  border: 1px solid #b26bff;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #8f44ff;
+}
+
+/* Заголовок */
+.neon-title {
+  font-size: 32px;
+  color: #d7b0ff;
+  text-shadow: 0 0 12px #b26bff;
+  margin-bottom: 20px;
+}
+
+/* Кнопка Назад */
+.back-btn {
+  margin-bottom: 15px;
+  padding: 8px 20px;
+  background: rgba(150, 80, 255, 0.2);
+  border: 1px solid #b26bff;
+  border-radius: 12px;
+  color: #ff2d58;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* 🌞 Светлая тема */
+body[data-theme="light"] .back-btn {
+  color: #4b007a; /* темный фиолетовый */
+}
+
+/* 🌙 Тёмная тема */
+body[data-theme="dark"] .back-btn {
+  color: #ffffff; /* яркий белый */
+}
+
+/* ✨ Hover в любой теме */
+.back-btn:hover {
+  background: #b57dff;
+  color: #000;
+  box-shadow: 0 0 18px #c28bff;
+}
+
+/* Поля */
+.neon-input {
+  width: 100%;
+  padding: 12px 14px;
+  background: rgba(30, 20, 50, 0.7);
+  border: 1px solid #b26bff;
+  border-radius: 12px;
+  color: #e9d7ff;
+  font-size: 16px;
+  margin-bottom: 20px;
+  outline: none;
+  transition: 0.3s;
+}
+.neon-input:focus {
+  box-shadow: 0 0 12px #b26bff;
+}
+
+/* Фото */
+.edit-preview {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid #b26bff;
+  background: #0a0714;
+}
+
+/* Большая кнопка */
+.admin-btn-big {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  background: #a06bff;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px #a06bff;
+  transition: 0.3s;
+}
+.admin-btn-big:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px #c28bff;
+}
+.orders-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.order-card {
+  background: rgba(20, 10, 40, 0.9);
+  border-radius: 14px;
+  padding: 18px 20px;
+  border: 1px solid rgba(178, 107, 255, 0.5);
+  box-shadow: 0 0 15px rgba(178, 107, 255, 0.35);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.order-status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.status-new {
+  background: rgba(255, 230, 150, 0.2);
+  border: 1px solid #ffeb89;
+}
+
+.status-processing {
+  background: rgba(255, 180, 120, 0.2);
+  border: 1px solid #ffb870;
+}
+
+.status-shipped {
+  background: rgba(120, 200, 255, 0.2);
+  border: 1px solid #7fd2ff;
+}
+
+.status-completed {
+  background: rgba(150, 255, 180, 0.2);
+  border: 1px solid #9cffaf;
+}
+
+.order-items {
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+
+.order-item-line {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.order-item-line.empty {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+.order-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.order-actions button {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: rgba(178, 107, 255, 0.18);
+  color: #f7e5ff;
+  font-size: 0.9rem;
+}
+
+.order-actions button:hover {
+  background: rgba(178, 107, 255, 0.35);
+}
+
+.order-delete {
+  background: rgba(255, 80, 120, 0.2) !important;
+  border: 1px solid rgba(255, 120, 150, 0.7);
+}
+.order-delete:hover {
+  background: rgba(255, 100, 140, 0.35) !important;
+}
+/* === Галерея — свайп-карусель === */
+.admin-carousel {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.admin-carousel .swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-main-img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 16px;
+  border: 2px solid #b26bff;
+  box-shadow: 0 0 25px rgba(178, 107, 255, 0.35);
+}
+
+.admin-thumbs {
+  margin-top: 14px;
+}
+
+.admin-thumb {
+  width: 70px;
+  height: 70px;
+  border-radius: 10px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.7;
+  transition: 0.25s;
+}
+
+.admin-thumb:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.admin-thumb-active {
+  border-color: #c87aff;
+  box-shadow: 0 0 12px #d69aff;
+  opacity: 1;
+}
+.admin-home {
+  margin-right: 15px; /* 🔥 расстояние между кнопками */
+}
+.admin-card h3 {
+  color: var(--text-accent);
+  font-weight: 700;
+}
+
+.ap-cat {
+  color: var(--text);
+  opacity: 0.8;
+}
+
+.ap-price {
+  color: var(--price);
+  font-weight: 700;
+  font-size: 18px;
+}
+/* 🌞 Светлая тема (включается с классом .light на body) */
+body.light {
+  --bg-main: #f5f2ff;
+  --bg-box: #ffffffcc;
+  --text-main: #000;
+  --border-main: #c29aff;
+}
+
+/* 🌙 Тёмная тема */
+body.dark {
+  --bg-main: #0a0714;
+  --bg-box: rgba(20, 10, 33, 0.9);
+  --text-main: #fff;
+  --border-main: rgba(150, 60, 255, 0.5);
+}
+
+/* Применяем переменные стилей */
+.admin-login-page {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+.admin-login-box {
+  background: var(--bg-box);
+  border: 1px solid var(--border-main);
+}
+
+/* Кнопка темы внутри логина */
+.login-theme-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+input.error {
+  border: 1px solid #ff5050 !important;
+  background: rgba(255, 80, 80, 0.1) !important;
+}
+.brand-icon-admin {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  margin-right: 14px;
+  box-shadow: 0 0 10px rgba(178, 107, 255, 0.9),
+    0 0 20px rgba(178, 107, 255, 0.8), 0 0 35px rgba(150, 60, 255, 0.75),
+    inset 0 0 12px rgba(200, 140, 255, 0.7);
+  transition: 0.3s;
+}
+
+.logo-title:hover .brand-icon-admin {
+  box-shadow: 0 0 15px rgba(200, 150, 255, 1), 0 0 35px rgba(180, 80, 255, 0.95),
+    0 0 55px rgba(140, 50, 255, 0.9), inset 0 0 20px rgba(210, 160, 255, 0.9);
+  transform: scale(1.06);
+}
+
+.admin-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.admin-logo-wrapper .brand-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #b66dff, 0 0 40px #9b27ff;
+  transition: 0.25s ease;
+}
+
+.admin-logo-wrapper .brand-icon:hover {
+  transform: scale(1.08) rotate(2deg);
+  box-shadow: 0 0 30px #d58aff, 0 0 65px #bd4cff;
+}
+
+.brand-text {
+  font-weight: 800;
+  color: var(--text-color);
+  transition: 0.25s ease;
+}
+
+.brand-text:hover {
+  text-shadow: 0 0 10px #d58aff, 0 0 25px #b66dff;
+}
+.brand-icon {
+  animation: pulseGlow 2.6s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 18px #b66dff;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 35px #d58aff;
+    transform: scale(1.03);
+  }
+  100% {
+    box-shadow: 0 0 18px #b66dff;
+    transform: scale(1);
+  }
+}
+.brand-text {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeInText 0.5s forwards ease-out;
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeInText {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.edit-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.img-box {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(180, 120, 255, 0.3);
+}
+
+.img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-box.main {
+  border-color: #b26bff;
+  box-shadow: 0 0 15px #b26bff;
+}
+
+.star {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: gold;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 0 6px #fff;
+}
+
+.tag {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: #eee;
+}
+
+.make-main-btn,
+.remove-btn {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  padding: 4px 6px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.make-main-btn {
+  right: 28px;
+  background: #7e57ff;
+}
+.make-main-btn:hover {
+  background: #9b7bff;
+}
+
+.remove-btn {
+  background: #ff4e4e;
+}
+.remove-btn:hover {
+  background: #ff2e2e;
+}
+
+.upload-box {
+  width: 130px;
+  height: 130px;
+  border: 2px dashed #8a4aff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.upload-box:hover {
+  opacity: 1;
+  background: rgba(150, 60, 255, 0.1);
+}
+
+.upload-label input {
+  display: none;
+}
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 120px;
+  margin-bottom: 10px;
+}
+.order-info p {
+  font-size: 36px; /* было 12px */
+  margin: 0;
+  line-height: 1.3;
+  color: var(--text-main); /* чтобы в обеих темах было видно */
+}
+.order-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-main);
+}

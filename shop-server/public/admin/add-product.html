@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Добавить товар</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      h2 {
+        margin-bottom: 15px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        width: 320px;
+        gap: 12px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      input,
+      textarea,
+      button {
+        padding: 8px;
+        font-size: 14px;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      #previewBox {
+        margin-top: 10px;
+      }
+
+      #preview {
+        max-width: 200px;
+        display: none;
+        border: 1px solid #ccc;
+        padding: 5px;
+        border-radius: 4px;
+      }
+      .error {
+        color: #d80000;
+        font-size: 13px;
+        margin-top: -5px;
+        margin-bottom: 5px;
+        display: none;
+      }
+
+      input.error-field,
+      textarea.error-field {
+        border: 2px solid #d80000;
+        background: #ffe5e5;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Добавить товар</h2>
+
+    <form id="productForm">
+      <label>Категория:</label>
+      <select id="category">
+        <option value="">Выберите категорию</option>
+        <option value="phones">📱 Телефоны</option>
+        <option value="laptops">💻 Ноутбуки</option>
+        <option value="audio">🎧 Аудио</option>
+        <option value="watches">⌚ Часы</option>
+        <option value="consoles">Приставки</option>
+      </select>
+      <div class="error" id="err-category"></div>
+
+      <label>Название:</label>
+      <input type="text" id="title" required />
+      <div class="error" id="err-title"></div>
+
+      <label>Цена:</label>
+      <input type="number" id="price" step="0.01" required />
+      <div class="error" id="err-title"></div>
+
+      <label>Описание:</label>
+      <textarea id="description" required></textarea>
+      <div class="error" id="err-title"></div>
+
+      <label>Изображение:</label>
+      <input type="file" id="image" accept="image/*" />
+      <div class="error" id="err-title"></div>
+
+      <!-- Предпросмотр -->
+      <div id="previewBox">
+        <img id="preview" />
+      </div>
+
+      <!-- Скрытое поле для URL картинки -->
+      <input type="hidden" id="image_url" />
+
+      <button type="button" id="uploadBtn">Загрузить фото</button>
+      <button type="submit">Создать товар</button>
+    </form>
+
+    <script>
+      // 📤 ПРЕДПРОСМОТР КАРТИНКИ
+      document.getElementById("image").addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        const preview = document.getElementById("preview");
+
+        if (file) {
+          preview.src = URL.createObjectURL(file);
+          preview.style.display = "block";
+        }
+      });
+
+      // 📤 ЗАГРУЗКА ФАЙЛА НА СЕРВЕР
+      document
+        .getElementById("uploadBtn")
+        .addEventListener("click", async () => {
+          const fileInput = document.getElementById("image");
+          const file = fileInput.files[0];
+
+          if (!file) {
+            alert("Родной, выбери картинку!");
+            return;
+          }
+
+          const formData = new FormData();
+          formData.append("image", file);
+
+          const response = await fetch("/api/products/upload", {
+            method: "POST",
+            body: formData,
+          });
+
+          const data = await response.json();
+
+          if (data.url) {
+            document.getElementById("image_url").value = data.url;
+            alert("Фото успешно загружено! ❤");
+          } else {
+            alert("Ошибка загрузки фото");
+          }
+        });
+
+      // ➕ СОЗДАНИЕ ТОВАРА
+      document
+        .getElementById("productForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const title = document.getElementById("title").value.trim();
+          const price = document.getElementById("price").value;
+          const description = document
+            .getElementById("description")
+            .value.trim();
+          const image_url = document.getElementById("image_url").value;
+
+          let isValid = true;
+
+          // ---- Название
+          if (!title) {
+            showError("title", "err-title", "Введите название товара");
+            isValid = false;
+          } else {
+            clearError("title", "err-title");
+          }
+
+          // ---- Цена
+          if (!price || price <= 0) {
+            showError("price", "err-price", "Цена должна быть больше 0");
+            isValid = false;
+          } else {
+            clearError("price", "err-price");
+          }
+
+          // ---- Описание
+          if (!description) {
+            showError("description", "err-desc", "Введите описание");
+            isValid = false;
+          } else {
+            clearError("description", "err-desc");
+          }
+
+          // ---- Категория
+          if (!category) {
+            showError("category", "err-category", "Выберите категорию");
+            isValid = false;
+          } else {
+            clearError("category", "err-category");
+          }
+
+          // ---- Фото
+          if (!image_url) {
+            showError("image", "err-image", "Сначала загрузите фото");
+            isValid = false;
+          } else {
+            clearError("image", "err-image");
+          }
+
+          if (!isValid) {
+            return; // стоп, если есть ошибки
+          }
+
+          const body = {
+            title,
+            price,
+            description,
+            image_url,
+            category,
+          };
+
+          const response = await fetch("/api/products", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+
+          const data = await response.json();
+          alert("Товар добавлен ❤");
+
+          console.log("Создан товар:", data);
+        });
+
+      function showError(inputId, errId, message) {
+        const input = document.getElementById(inputId);
+        const err = document.getElementById(errId);
+
+        input.classList.add("error-field");
+        err.innerText = message;
+        err.style.display = "block";
+      }
+
+      function clearError(inputId, errId) {
+        const input = document.getElementById(inputId);
+        const err = document.getElementById(errId);
+
+        input.classList.remove("error-field");
+        err.style.display = "none";
+      }
+    </script>
+  </body>
+</html>

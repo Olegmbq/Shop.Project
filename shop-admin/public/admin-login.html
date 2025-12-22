@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Neon Admin — Вход</title>
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+
+  <body class="admin-login-page">
+    <div class="admin-login-wrapper">
+      <div class="admin-login-card">
+        <h1 class="admin-logo">💎 Neon Admin</h1>
+        <p class="admin-subtitle">Панель управления магазином</p>
+
+        <form id="login-form" class="admin-login-form" autocomplete="off">
+          <label>
+            Логин
+            <input
+              type="text"
+              id="login"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+            />
+          </label>
+
+          <label>
+            Пароль
+            <input
+              type="password"
+              id="password"
+              autocomplete="new-password"
+              autocapitalize="none"
+              spellcheck="false"
+            />
+          </label>
+
+          <button type="submit" class="admin-btn primary">
+            Войти в панель
+          </button>
+
+          <p id="login-error" class="admin-error"></p>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="./admin-login.js"></script>
+  </body>
+</html>

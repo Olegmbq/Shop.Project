@@ -1,0 +1,16 @@
+/* Гладкий переход темы */
+body {
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Светлая тема */
+body.light {
+  background: #f7f7ff;
+  color: #222;
+}
+
+/* Тёмная тема */
+body.dark {
+  background: #070710;
+  color: #f4f4f9;
+}

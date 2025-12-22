@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Корзина</title>
+
+    <link rel="stylesheet" href="./catalog.css" />
+
+    <style>
+      body {
+        padding: 40px;
+      }
+
+      .cart-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .cart-item {
+        background: rgba(40, 20, 70, 0.6);
+        border: 1px solid #a37cff66;
+        border-radius: 14px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 20px #0005;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: 0.3s;
+      }
+
+      .cart-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px #cfaaffaa;
+      }
+
+      .cart-item img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 12px;
+        box-shadow: 0 0 12px #a37cff55;
+      }
+
+      .remove-btn {
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: #ff5fbb;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-left: auto;
+      }
+
+      .remove-btn:hover {
+        background: #ff88d8;
+        box-shadow: 0 0 15px #ffb0e6;
+      }
+
+      .total-block {
+        margin-top: 30px;
+        font-size: 26px;
+        color: #e6c3ff;
+        text-shadow: 0 0 10px #b77bff;
+      }
+
+      /* ======= MODAL ======= */
+
+      .cart-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s ease-in-out;
+      }
+
+      .cart-modal.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .cart-modal-box {
+        background: #1e0030;
+        padding: 30px;
+        border-radius: 14px;
+        width: 350px;
+        text-align: center;
+        box-shadow: 0 0 25px #d28affaa;
+        animation: modalPop 0.3s ease;
+      }
+
+      @keyframes modalPop {
+        from {
+          transform: scale(0.85);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .cart-modal-box h2 {
+        color: #e6c3ff;
+        margin-bottom: 10px;
+      }
+
+      .cart-modal-box p {
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .cart-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 15px;
+      }
+
+      /* === КРАСИВЫЕ НЕОН-КНОПКИ === */
+      .neon-btn {
+        background: linear-gradient(90deg, #d16bff, #7b5bff);
+        border: none;
+        padding: 12px 22px;
+        font-size: 18px;
+        border-radius: 12px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 0 15px #a66bff;
+        transition: 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .neon-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 25px #caa3ff;
+      }
+
+      .cart-buttons {
+        display: flex;
+        gap: 20px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="neon-title">🛒 Ваша корзина</h1>
+
+    <div class="cart-wrapper" id="cart-list"></div>
+
+    <div class="cart-summary">
+      <div class="cart-total">Итого: <span id="cart-total">0</span> $</div>
+
+      <div class="cart-buttons">
+        <div class="cart-buttons">
+          <button class="neon-btn clear-cart">🗑️ Очистить корзину</button>
+
+          <button class="neon-btn checkout-btn">💳 Оформить заказ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔮 CART MODAL -->
+    <div id="cart-modal" class="cart-modal hide">
+      <div class="cart-modal-box">
+        <h2>💜 Заказ принят!</h2>
+        <p id="cart-modal-text"></p>
+
+        <button id="cart-modal-close" class="neon-btn">
+          Вернуться в магазин
+        </button>
+      </div>
+    </div>
+
+    <script type="module" src="./cart.js"></script>
+  </body>
+</html>

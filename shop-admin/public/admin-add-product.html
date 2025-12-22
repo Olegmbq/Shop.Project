@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Neon Admin — Добавить товар</title>
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+
+  <body class="admin-page">
+    <header class="admin-header">
+      <div class="admin-header-left">
+        <div class="admin-brand">
+          <span class="admin-brand-logo">💎</span>
+          <span class="admin-brand-text">Добавить товар</span>
+        </div>
+      </div>
+
+      <div class="admin-header-right">
+        <button
+          onclick="window.location.href='admin-panel.html'"
+          class="admin-btn ghost"
+        >
+          ⬅ Назад
+        </button>
+      </div>
+    </header>
+
+    <main class="admin-main centered">
+      <div class="admin-form-card">
+        <h2 class="admin-form-title">Добавление товара</h2>
+
+        <form id="add-form" enctype="multipart/form-data">
+          <label
+            >Название
+            <input type="text" id="title" required />
+          </label>
+
+          <label
+            >Цена ($)
+            <input type="number" id="price" step="0.01" required />
+          </label>
+
+          <label
+            >Описание
+            <textarea id="description"></textarea>
+          </label>
+
+          <label
+            >Категория
+            <input type="text" id="category" />
+          </label>
+
+          <label
+            >Фото товара
+            <input type="file" id="image" accept="image/*" />
+          </label>
+
+          <button class="admin-btn primary big" type="submit">
+            💾 Добавить товар
+          </button>
+
+          <p id="message"></p>
+        </form>
+      </div>
+    </main>
+
+    <script>
+      const form = document.getElementById("add-form");
+      const msg = document.getElementById("message");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        msg.textContent = "";
+
+        const fd = new FormData();
+        fd.append("title", title.value.trim());
+        fd.append("price", price.value.trim());
+        fd.append("description", description.value.trim());
+        fd.append("category", category.value.trim());
+        fd.append("image", image.files[0]);
+
+        try {
+          const res = await fetch("http://localhost:4000/products", {
+            method: "POST",
+            body: fd,
+          });
+
+          if (!res.ok) throw new Error();
+
+          msg.textContent = "💎 Товар добавлен!";
+          msg.style.color = "#00ff9d";
+          form.reset();
+        } catch {
+          msg.textContent = "❌ Ошибка добавления";
+          msg.style.color = "red";
+        }
+      });
+    </script>
+  </body>
+</html>

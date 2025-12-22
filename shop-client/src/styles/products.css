@@ -1,0 +1,715 @@
+body {
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+body.dark .products-page {
+  padding: 40px;
+  background: radial-gradient(circle at top, #0d0d14 0%, #070710 100%);
+  color: #f4f4f9;
+  min-height: 100vh;
+}
+
+body.light .products-page {
+  padding: 40px;
+  background: #f8f8ff;
+  color: #222;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 2.4rem;
+  margin-bottom: 40px;
+  color: #b26bff;
+  text-shadow: 0 0 10px rgba(178, 107, 255, 0.9),
+    0 0 25px rgba(178, 107, 255, 0.6), 0 0 45px rgba(125, 249, 255, 0.3);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.title::before {
+  content: "📱📱";
+  font-size: 1.8rem;
+  filter: drop-shadow(0 0 6px rgba(178, 107, 255, 0.8));
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  justify-items: center;
+  padding-bottom: 60px;
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  padding: 25px 20px;
+  width: 260px;
+  box-shadow: 0 0 10px rgba(178, 107, 255, 0.15),
+    inset 0 0 10px rgba(125, 249, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(178, 107, 255, 0.1);
+
+  /* 🎬 новая анимация */
+  opacity: 0;
+  animation: cardAppear 0.7s ease forwards;
+}
+
+.product-card:nth-child(1) {
+  animation-delay: 0.15s;
+}
+.product-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.product-card:nth-child(3) {
+  animation-delay: 0.45s;
+}
+.product-card:nth-child(4) {
+  animation-delay: 0.6s;
+}
+.product-card:nth-child(5) {
+  animation-delay: 0.75s;
+}
+.product-card:nth-child(6) {
+  animation-delay: 0.9s;
+}
+
+body.dark .product-card:hover {
+  transform: translateY(-6px) scale(1.03);
+
+  box-shadow: 0 0 25px rgba(178, 107, 255, 0.6),
+    0 0 50px rgba(125, 249, 255, 0.35), inset 0 0 18px rgba(178, 107, 255, 0.4);
+
+  border-color: rgba(178, 107, 255, 0.6);
+}
+
+body.light .product-card:hover {
+  transform: translateY(-6px) scale(1.03);
+
+  box-shadow: 0 0 14px rgba(120, 120, 255, 0.3),
+    0 0 26px rgba(160, 160, 255, 0.2);
+
+  border-color: rgba(140, 140, 255, 0.4);
+}
+
+.product-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 8px rgba(178, 107, 255, 0.3);
+}
+
+h3 {
+  margin: 10px 0 5px;
+  font-size: 1.1rem;
+  color: #fff;
+  text-shadow: 0 0 4px rgba(178, 107, 255, 0.5);
+}
+
+.price {
+  color: #7df9ff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  text-shadow: 0 0 6px rgba(125, 249, 255, 0.8);
+}
+
+.desc {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.4;
+}
+/* Светлая тема */
+body.light .btn-add {
+  width: 100%;
+  padding: 14px 0;
+  margin-top: 15px;
+  background: #6b5bff;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+body.light .btn-add:hover {
+  background: #8270ff;
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 0 12px rgba(130, 112, 255, 0.6);
+}
+
+/* Тёмная тема — неоновая */
+body.dark .btn-add {
+  width: 100%;
+  padding: 14px 0;
+  margin-top: 15px;
+  background: linear-gradient(90deg, #7a4bff, #905cff);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 14px;
+  border: 1px solid rgba(178, 107, 255, 0.5);
+  cursor: pointer;
+  letter-spacing: 0.5px;
+
+  box-shadow: 0 0 12px rgba(178, 107, 255, 0.6),
+    0 0 22px rgba(125, 249, 255, 0.3);
+
+  transition: 0.25s ease;
+}
+
+body.dark .btn-add:hover {
+  transform: translateY(-3px) scale(1.04);
+
+  background: linear-gradient(90deg, #8b5cff, #a66cff);
+
+  box-shadow: 0 0 20px rgba(178, 107, 255, 0.9),
+    0 0 35px rgba(125, 249, 255, 0.5), inset 0 0 15px rgba(178, 107, 255, 0.4);
+}
+
+/* Светлая тема — корректируем текст на карточке */
+body.light .product-card h3 {
+  color: #333;
+  text-shadow: none;
+}
+
+body.light .product-card .price {
+  color: #3a6cff;
+  text-shadow: none;
+}
+
+body.light .product-card .desc {
+  color: #555;
+  opacity: 0.9;
+}
+@keyframes cardAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(25px) scale(0.97);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+.btn-details {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 0;
+  background: transparent;
+  border: 1px solid rgba(178, 107, 255, 0.4);
+  border-radius: 14px;
+  color: #b26bff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+body.dark .btn-details:hover {
+  background: rgba(178, 107, 255, 0.15);
+  box-shadow: 0 0 10px rgba(178, 107, 255, 0.6);
+}
+
+body.light .btn-details:hover {
+  background: rgba(100, 80, 255, 0.08);
+  box-shadow: 0 0 8px rgba(120, 100, 255, 0.3);
+}
+.product-single {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(6px);
+  text-align: center;
+  box-shadow: 0 0 20px rgba(178, 107, 255, 0.15);
+}
+
+.single-img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  box-shadow: 0 0 12px rgba(178, 107, 255, 0.3);
+}
+.categories {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.cat-btn {
+  padding: 8px 18px;
+  background: transparent;
+  border: 1px solid rgba(178, 107, 255, 0.4);
+  border-radius: 12px;
+  color: #b26bff;
+  cursor: pointer;
+  transition: 0.25s ease;
+  font-size: 0.95rem;
+}
+
+.cat-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 12px rgba(178, 107, 255, 0.6);
+}
+
+/* Активная кнопка */
+.cat-btn.active {
+  background: #7a4bff;
+  color: white;
+  border-color: rgba(178, 107, 255, 0.8);
+  box-shadow: 0 0 12px rgba(178, 107, 255, 0.8);
+}
+
+/* Светлая тема */
+body.light .cat-btn {
+  border-color: rgba(120, 120, 255, 0.3);
+  color: #4b3abb;
+}
+
+body.light .cat-btn.active {
+  background: #6d5aff;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(125, 120, 255, 0.4);
+}
+/* === СЕТКА ТОВАРОВ === */
+.products-grid {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  padding: 20px;
+}
+
+/* === ОСНОВНАЯ КАРТОЧКА === */
+.product-card {
+  background: rgba(40, 0, 60, 0.35);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.35s ease;
+  cursor: pointer;
+
+  border: 1px solid rgba(180, 90, 255, 0.25);
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+
+/* НЕОНОВАЯ ТЕНЬ */
+.neon-card {
+  box-shadow: 0 0 12px rgba(165, 73, 255, 0.45);
+}
+
+/* ХОВЕР ЭФФЕКТ — ПОДНИМАЕМ КАРТОЧКУ И УСИЛИВАЕМ СВЕТ */
+.neon-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 0 20px rgba(165, 73, 255, 0.55),
+    0 0 40px rgba(165, 73, 255, 0.35);
+  border-color: rgba(200, 120, 255, 0.55);
+}
+
+/* === КАРТИНКА === */
+.product-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+/* === ТЕКСТ === */
+.product-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e8d5ff;
+}
+
+.price {
+  font-size: 18px;
+  color: #b47aff;
+  margin: 5px 0 10px 0;
+}
+
+/* === КНОПКА В КОРЗИНУ (НЕОН) === */
+.neon-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #b762ff, #8b48ff);
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 10px;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(171, 80, 255, 0.5);
+}
+
+/* Ховер кнопки */
+.neon-btn:hover {
+  box-shadow: 0 0 18px rgba(200, 110, 255, 0.8);
+  transform: scale(1.05);
+}
+
+/* Кнопка "Подробнее" */
+.btn-details {
+  margin-top: 5px;
+  background: transparent;
+  border: 1px solid #b47aff;
+  padding: 8px 12px;
+  font-size: 15px;
+  border-radius: 10px;
+  color: #d8b7ff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-details:hover {
+  background: rgba(180, 90, 255, 0.2);
+}
+/* === НЕОНОВЫЕ КАТЕГОРИИ === */
+
+.categories {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.cat-btn {
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e6dfff;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+  backdrop-filter: blur(6px);
+}
+
+.cat-btn:hover {
+  transform: translateY(-3px);
+  background: rgba(181, 121, 255, 0.25);
+  box-shadow: 0 0 12px rgba(168, 118, 255, 0.6);
+}
+
+.cat-btn.active {
+  background: linear-gradient(135deg, #b57bff, #8a3cff);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  box-shadow: 0 0 20px rgba(150, 80, 255, 0.7),
+    inset 0 0 12px rgba(255, 255, 255, 0.3);
+
+  transform: translateY(-3px);
+}
+.cat-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cat-icon {
+  font-size: 18px;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+.cat-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cat-icon-img {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 0 6px #a855f7);
+  opacity: 0.9;
+  transition: 0.2s ease;
+}
+
+.cat-btn:hover .cat-icon-img,
+.cat-btn.active .cat-icon-img {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px #c084fc);
+}
+.cat-emoji {
+  font-size: 20px;
+  margin-right: 6px;
+}
+
+/* --- ПОИСКОВАЯ СТРОКА --- */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px auto 30px;
+  width: 350px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  border: 1px solid rgba(170, 101, 255, 0.4);
+  box-shadow: 0 0 12px rgba(170, 101, 255, 0.4);
+}
+
+.search-icon {
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+.search-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+/* ==== SEARCH INPUT PLACEHOLDER COLOR ==== */
+.search-box input::placeholder {
+  color: #bbbbbb;
+  transition: color 0.3s ease;
+}
+
+/* 🌞 Светлая тема — делаем placeholder тёмным */
+body.light .search-box input::placeholder {
+  color: #555555;
+}
+
+/* 🌙 Тёмная тема — белый placeholder */
+body.dark .search-box input::placeholder {
+  color: #ffffff;
+}
+/* 🟣 Поиск */
+.search-box {
+  width: 380px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(180, 100, 255, 0.4);
+  padding: 10px 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 12px rgba(180, 100, 255, 0.4);
+}
+
+.search-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.search-box input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: white;
+}
+
+/* Светлая тема */
+body.light .search-box {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(160, 60, 255, 0.6);
+}
+
+body.light .search-box input {
+  color: black;
+}
+
+/* 🟣 НЕОН ПАГИНАЦИЯ */
+.pagination {
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pg-btn,
+.pg-number {
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(120, 40, 255, 0.2);
+  color: #d7b2ff;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s;
+  box-shadow: 0 0 10px rgba(150, 60, 255, 0.4);
+}
+
+.pg-number.active {
+  background: #b56bff;
+  color: white;
+  box-shadow: 0 0 15px #c088ff;
+}
+
+.pg-btn:hover,
+.pg-number:hover {
+  background: rgba(170, 80, 255, 0.4);
+  transform: translateY(-2px);
+}
+/* ===== 📱 АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ ===== */
+
+/* --- Мелкие телефоны (до 420px) — 1 карточка в ряд --- */
+@media (max-width: 420px) {
+  .products-grid {
+    grid-template-columns: 1fr !important;
+    gap: 22px;
+    padding: 10px;
+  }
+
+  .product-card {
+    width: 100%;
+    max-width: 95%;
+    margin: 0 auto;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .search-box input {
+    font-size: 0.95rem;
+  }
+
+  .categories {
+    gap: 8px;
+    overflow-x: scroll;
+    padding-bottom: 8px;
+  }
+
+  .cat-btn {
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Средние телефоны (421–768px) — 2 карточки в ряд --- */
+@media (min-width: 421px) and (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    padding: 10px;
+  }
+
+  .product-card {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .categories {
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .cat-btn {
+    font-size: 1rem;
+    padding: 10px 16px;
+  }
+}
+
+/* --- Планшеты --- */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/* 📱 Адаптив для телефонов */
+@media (max-width: 600px) {
+  .cart-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .cart-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 0;
+    font-size: 18px;
+  }
+
+  .cart-sum {
+    font-size: 22px;
+    text-align: center;
+  }
+}
+/* СЕТКА КАТАЛОГА — АДАПТИВНАЯ */
+
+.products-grid {
+  display: grid;
+  gap: 25px;
+  padding: 20px 0;
+
+  /* ПК — по умолчанию 3 товара в строке */
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* 4 карточки на больших экранах */
+@media (min-width: 1400px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Планшеты – 2 карточки */
+@media (max-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Телефоны – 1 карточка */
+@media (max-width: 550px) {
+  .products-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.product-card {
+  background: var(--card-bg);
+  color: var(--text);
+  transition: 0.2s;
+}
+.product-card:hover {
+  box-shadow: 0 0 20px var(--neon);
+}

@@ -1,0 +1,42 @@
+/* ====== БАЗОВЫЕ ТЕМНЫЕ И СВЕТЛЫЕ ЦВЕТА ====== */
+
+:root {
+  --bg: #0b0b12;
+  --card-bg: #1a1428;
+  --text: #ffffff;
+  --text-muted: #cfcfcf;
+  --input-bg: #e8eeff;
+  --neon: #b47bff;
+  --accent: #9d5cff;
+}
+
+/* ====== СВЕТЛАЯ ТЕМА ====== */
+
+body[data-theme="light"] {
+  --bg: #f6f7ff;
+  --card-bg: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #555;
+  --input-bg: #eef2ff;
+  --neon: #a96cff;
+  --accent: #c28bff;
+}
+
+/* ====== ОБЩИЙ СТИЛЬ ====== */
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.card,
+.admin-box,
+.admin-login-box {
+  background: var(--card-bg);
+  color: var(--text);
+}
+input,
+textarea {
+  background: var(--input-bg);
+}

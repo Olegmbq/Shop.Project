@@ -1,0 +1,309 @@
+.cart-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 8px 16px;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(150, 80, 255, 0.6);
+  transition: 0.3s ease;
+  border: 1px solid rgba(150, 80, 255, 0.4);
+}
+
+/* Иконка */
+.cart-icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* Число */
+.cart-count {
+  color: #6ef6ff;
+  font-size: 39px; /* УВЕЛИЧИЛ */
+  font-weight: 700; /* Толще */
+  margin-left: 8px; /* Немного расстояния от иконки */
+  text-shadow: 0 0 8px #6ef6ff; /* Неоновое свечение */
+}
+
+/* При наведении */
+.cart-btn:hover {
+  background: #9c6bff;
+  color: white;
+  box-shadow: 0 0 18px rgba(150, 80, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+.cart-btn:hover .cart-count {
+  color: white;
+}
+.cart-page {
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.cart-title {
+  text-align: center;
+  color: #c493ff;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.cart-item {
+  display: flex;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 18px;
+  border-radius: 16px;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 0 12px rgba(170, 110, 255, 0.15);
+}
+
+.cart-img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 10px;
+}
+
+.cart-info h3 {
+  margin: 0;
+  color: #fff;
+}
+
+.cart-price {
+  color: #7df9ff;
+  margin: 5px 0 10px;
+  font-size: 1.1rem;
+  text-shadow: 0 0 6px rgba(125, 249, 255, 0.8);
+}
+
+.cart-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-qty button {
+  background: #8f4bff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.1rem;
+  box-shadow: 0 0 10px rgba(143, 75, 255, 0.6);
+}
+
+.cart-qty span {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.remove-btn {
+  margin-top: 10px;
+  background: #ff5f5f;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.cart-total {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 0 14px rgba(170, 110, 255, 0.3);
+}
+
+.checkout-btn {
+  margin-top: 15px;
+  padding: 14px 25px;
+  background: linear-gradient(135deg, #8f4bff, #b073ff);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(170, 110, 255, 0.6);
+}
+
+.empty {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-top: 80px;
+  color: #c493ff;
+}
+.cart-actions {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+/* Кнопки */
+.cart-actions {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.cart-btn {
+  background: linear-gradient(45deg, #d66aff, #7d56ff);
+  padding: 18px 35px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(160, 90, 255, 0.7);
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-btn span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(180, 100, 255, 0.9);
+}
+
+.cart-sum {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.cart-item-total {
+  font-size: 15px;
+  color: #bbb;
+  margin: 4px 0 10px;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.right-remove {
+  align-self: flex-start;
+  margin-left: 20px;
+  white-space: nowrap;
+}
+/* 🎯 Увеличиваем название товара */
+.cart-item-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #e7d7ff;
+}
+
+/* 💰 Увеличиваем сумму и строку расчёта */
+.cart-item-line {
+  font-size: 18px;
+  color: #c8b4ff;
+}
+
+/* 🔴 Кнопка Удалить — красная, аккуратная */
+.cart-delete-btn {
+  background: #ff3b3b;
+  border: none;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+  margin-left: 10px;
+}
+
+.cart-delete-btn:hover {
+  background: #ff0000;
+  box-shadow: 0 0 8px #ff4d4d;
+}
+
+/* Блок количества */
+.cart-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* 🔥 расстояние между кнопками и цифрой */
+}
+
+/* 🎛️ Увеличиваем кнопки + и - */
+.cart-item-qty button {
+  width: 62px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+/* Цифра в середине */
+.cart-item-qty span {
+  font-size: 27px; /* 🔥 увеличили */
+  font-weight: bold;
+  min-width: 24px;
+  text-align: center;
+  color: #fff;
+}
+
+/* 🚀 Выравниваем блоки красиво */
+.cart-item-info {
+  text-align: left;
+}
+.cart-item-title {
+  font-size: 32px; /* ➜ крупнее */
+}
+
+.cart-item-line {
+  font-size: 32px; /* ➜ крупнее */
+}
+
+.thanks-page {
+  margin-top: 180px; /* отодвигаем вниз от хедера */
+  padding-left: 650px; /* от левого края */
+}
+
+.thanks-page h1 {
+  margin-bottom: 15px;
+}
+
+.thanks-page button {
+  background: #9b5cff;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.thanks-page button:hover {
+  background: #b47fff;
+  box-shadow: 0 0 12px #b47fff;
+}
+.cart-item img {
+  width: 360px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(140, 50, 255, 0.6), 0 0 25px rgba(100, 30, 255, 0.4);
+}

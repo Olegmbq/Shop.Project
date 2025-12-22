@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Админ-панель</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        padding: 30px;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #222;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        margin: 10px 0;
+        background: #6a5acd;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 18px;
+        transition: 0.2s;
+      }
+
+      .btn:hover {
+        background: #5946c0;
+      }
+
+      .btn-red {
+        background: #e64a4a;
+      }
+
+      .btn-red:hover {
+        background: #cc3d3d;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Добро пожаловать, Админ!</h1>
+
+      <a href="/admin/add-product" class="btn">➕ Добавить товар</a>
+      <a href="/admin/manage" class="btn">📦 Управление товарами</a>
+      <a href="/catalog" class="btn">🛍 Перейти в каталог</a>
+      <a href="/" class="btn-red">🚪 Выйти</a>
+    </div>
+  </body>
+</html>

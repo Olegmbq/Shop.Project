@@ -1,0 +1,235 @@
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  background: #0b0b13;
+  color: #fff;
+}
+
+.neon-title {
+  text-align: center;
+  color: #b26bff;
+  margin-bottom: 25px;
+}
+
+.checkout-container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.checkout-form,
+.checkout-summary {
+  background: #151520;
+  padding: 20px;
+  border-radius: 14px;
+  width: 350px;
+  box-shadow: 0 0 15px rgba(178, 107, 255, 0.3);
+}
+
+label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: none;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.checkout-total {
+  margin-top: 20px;
+  font-size: 20px;
+  text-align: right;
+}
+
+.checkout-confirm {
+  width: 100%;
+  padding: 12px;
+  background: #b26bff;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.order-list {
+  margin-top: 10px;
+}
+
+.order-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 15px;
+}
+
+.total-row {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.empty-msg {
+  color: #ccc;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.checkout-item {
+  display: grid;
+  grid-template-columns: 1fr 40px 100px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 16px;
+}
+
+.ci-title {
+  font-weight: 500;
+}
+
+.ci-qty {
+  text-align: center;
+  opacity: 0.8;
+}
+
+.ci-price {
+  text-align: right;
+  font-weight: 600;
+}
+
+/* ============================================
+      МОДАЛЬНОЕ ОКНО ПОДТВЕРЖДЕНИЯ ЗАКАЗА
+============================================ */
+
+.order-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.order-box {
+  background: #0a0a0a;
+  border: 2px solid #7df9ff;
+  padding: 30px;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 0 25px #7df9ff, inset 0 0 15px #b26bff;
+  animation: pop 0.35s ease;
+}
+
+.order-box h2 {
+  color: #7df9ff;
+  margin-bottom: 10px;
+  font-size: 26px;
+}
+
+.order-box p {
+  color: #eee;
+  font-size: 18px;
+  margin: 6px 0;
+}
+
+.order-box strong {
+  color: #fff;
+}
+
+#back-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #7df9ff;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+#back-btn:hover {
+  transform: scale(1.05);
+  background: #b26bff;
+  color: #fff;
+}
+
+/* Анимация появления */
+@keyframes pop {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.order-items {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.order-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.order-info {
+  color: #e9d7ff;
+  font-size: 16px;
+}
+
+.order-total {
+  color: #a56bff;
+  font-weight: bold;
+}
+.checkout-summary {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  margin-left: 20px;
+}
+.checkout-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}

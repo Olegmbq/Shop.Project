@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Редактирование товара — Neon Admin</title>
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+
+  <body class="admin-page">
+    <div class="edit-wrapper">
+      <h2 class="edit-title">✏️ Редактирование товара</h2>
+
+      <form id="edit-form" enctype="multipart/form-data">
+        <label>Название</label>
+        <input type="text" id="title" required />
+
+        <label>Цена ($)</label>
+        <input type="number" id="price" step="0.01" required />
+
+        <label>Категория</label>
+        <select id="category">
+          <option value="phones">Телефоны</option>
+          <option value="laptops">Ноутбуки</option>
+          <option value="audio">Аудио</option>
+          <option value="watches">Часы</option>
+          <option value="consoles">Приставки</option>
+        </select>
+
+        <label>Описание</label>
+        <textarea id="description"></textarea>
+
+        <label>Главное изображение</label>
+        <img id="preview" class="preview-img" src="/brand/default.png" />
+
+        <button type="button" id="upload-btn" class="admin-btn ghost">
+          📁 Загрузить новое фото
+        </button>
+        <input type="file" id="image" accept="image/*" hidden />
+
+        <label>URL главной картинки</label>
+        <input type="text" id="image_url" placeholder="/uploads/img.png" />
+
+        <button type="submit" class="admin-btn primary big">
+          💾 Сохранить изменения
+        </button>
+        <button type="button" class="admin-btn ghost" id="back-btn">
+          ⬅ Назад
+        </button>
+      </form>
+    </div>
+
+    <script src="./admin-edit-product.js" type="module"></script>
+
+    <script>
+      document.getElementById("back-btn").onclick = () => {
+        window.location.href = "admin-panel.html";
+      };
+    </script>
+  </body>
+</html>

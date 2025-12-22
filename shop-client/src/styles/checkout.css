@@ -1,0 +1,253 @@
+.checkout-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px 40px; /* ⬅ добавили отступы по бокам */
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(160, 90, 255, 0.3);
+  border: 2px solid rgba(136, 76, 255, 0.3);
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 35px;
+}
+
+.checkout-form input,
+.checkout-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #8c4dff;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.checkout-form textarea {
+  min-height: 100px; /* ⬅ увеличили поле комментария */
+  resize: vertical; /* можно менять высоту вручную */
+}
+
+.checkout-form button {
+  align-self: center;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 10px;
+  background: #a16bff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: 0.25s;
+}
+
+.checkout-form button {
+  align-self: center;
+  padding: 10px 22px;
+  font-size: 16px;
+  border-radius: 10px;
+  background: #a16bff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: 0.25s;
+}
+
+.checkout-form button:hover {
+  background: #bf8aff;
+  box-shadow: 0 0 10px #bf8aff;
+}
+.checkout-form label {
+  font-size: 27px;
+  font-weight: 600;
+}
+.checkout-title {
+  font-size: 63px; /* было 26-28 */
+}
+
+.thanks-page {
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  max-width: 600px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  background: rgba(255, 255, 255, 0.04);
+  padding: 40px 25px;
+  border-radius: 18px;
+  border: 1px solid rgba(185, 120, 255, 0.4);
+  box-shadow: 0 0 30px rgba(150, 80, 255, 0.35);
+}
+
+/* Заголовок */
+.thanks-page h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #9145ff; /* ярко-фиолетовый, отлично видно */
+  text-shadow: 0 0 12px rgba(160, 80, 255, 0.75);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+/* Подтекст */
+.thanks-page p {
+  font-size: 20px;
+  color: var(--text-main);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+}
+
+/* Кнопка назад */
+.thanks-page button {
+  padding: 12px 22px;
+  font-size: 18px;
+  background: #b57dff;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: 0 0 16px #c08eff;
+  transition: 0.25s ease;
+}
+
+.thanks-page button:hover {
+  background: #d19cff;
+  box-shadow: 0 0 22px #e7c3ff;
+  transform: translateY(-3px);
+}
+.thanks-box {
+  background: rgba(255, 255, 255, 0.18);
+  border: 2px solid rgba(180, 120, 255, 0.35);
+}
+
+.checkout-page input,
+.checkout-page textarea {
+  color: #000; /* 🔥 чёрный текст — видно на светлом фоне */
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #aaa;
+}
+
+/* Цвет плейсхолдера */
+.checkout-page input::placeholder,
+.checkout-page textarea::placeholder {
+  color: #555; /* приятный серый, хорошо видно */
+}
+.checkout-page input:focus,
+.checkout-page textarea:focus {
+  border-color: #9a3cff;
+  box-shadow: 0 0 8px #c28bff;
+  outline: none;
+  color: #000;
+}
+/* 🎉 Thanks Page Design — CENTERED + BETTER VISIBILITY */
+.thanks-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  padding: 30px; /* было 60-80 — уменьшили */
+  max-width: 480px;
+  margin: 60px auto;
+
+  background: rgba(150, 80, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(150, 80, 255, 0.4);
+}
+
+.thanks-box {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 40px 50px;
+  width: 600px;
+  text-align: center;
+  box-shadow: 0 0 35px rgba(160, 90, 255, 0.35);
+  border: 2px solid rgba(180, 120, 255, 0.4);
+}
+
+.thanks-box h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-main);
+  text-shadow: 0 0 14px rgba(160, 90, 255, 0.7);
+  margin-bottom: 12px;
+}
+
+.thanks-box p {
+  font-size: 19px;
+  color: var(--text-sub);
+  margin-bottom: 22px;
+}
+
+.thanks-box button {
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.thanks-box button:hover {
+  background: var(--accent-glow);
+}
+.checkout-cart img {
+  width: 160px; /* 🔹 регулируем ширину */
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 15px;
+  box-shadow: 0 0 12px rgba(180, 90, 255, 0.4);
+}
+.checkout-cart-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.checkout-cart {
+  margin-top: 25px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 18px rgba(150, 80, 255, 0.25);
+}
+
+/* Изображения товаров в заказе */
+.checkout-img {
+  width: 360px; /* Максимальная ширина */
+  height: 360px; /* Делаем квадратные карточки */
+  object-fit: cover; /* красиво обрезает по центру */
+  border-radius: 14px;
+  display: block;
+  margin: 10px auto;
+  box-shadow: 0 0 15px rgba(140, 50, 255, 0.6), 0 0 30px rgba(100, 30, 255, 0.4);
+}
+/* Заголовок блока 'Ваш заказ' */
+.checkout-summary h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--text-main);
+  text-shadow: 0 0 10px rgba(181, 125, 255, 0.6);
+}
+
+/* Итоговая сумма */
+.summary-total {
+  font-size: 36px;
+  font-weight: 800;
+  color: #7df9ff; /* неоновый голубой */
+  margin-top: 20px;
+  text-shadow: 0 0 12px #7df9ff;
+}

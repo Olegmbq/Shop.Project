@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Управление товарами</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f6f6f6;
+        padding: 30px;
+      }
+      h1 {
+        font-size: 40px;
+        color: #222;
+        margin-bottom: 20px;
+      }
+      .product-list {
+        max-width: 800px;
+      }
+      .product-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #fff;
+        padding: 12px 16px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
+      .product-title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .product-price {
+        color: #555;
+        margin-left: 8px;
+      }
+      .btn-group {
+        display: flex;
+        gap: 10px;
+      }
+      .btn {
+        border: none;
+        padding: 8px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .btn-edit {
+        background: #6a5acd;
+      }
+      .btn-delete {
+        background: #e64a4a;
+      }
+      .btn-back {
+        margin-top: 20px;
+        padding: 10px 16px;
+        background: #ddd;
+        border-radius: 8px;
+        text-decoration: none;
+        color: #222;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Управление товарами</h1>
+
+    <div class="product-list" id="productList"></div>
+
+    <a href="/admin" class="btn-back">← Назад в админку</a>
+
+    <script>
+      async function loadProducts() {
+        const res = await fetch("/api/products");
+        const products = await res.json();
+
+        const list = document.getElementById("productList");
+        list.innerHTML = "";
+
+        products.forEach((p) => {
+          const row = document.createElement("div");
+          row.className = "product-row";
+
+          const info = document.createElement("div");
+          info.innerHTML =
+            '<span class="product-title">' +
+            p.title +
+            "</span>" +
+            ' <span class="product-price">— ' +
+            p.price +
+            " ₽</span>";
+
+          const buttons = document.createElement("div");
+          buttons.className = "btn-group";
+
+          const editBtn = document.createElement("button");
+          editBtn.className = "btn btn-edit";
+          editBtn.textContent = "✏ Редактировать";
+          editBtn.onclick = () => {
+            window.location.href = "/admin/edit?id=" + p.id;
+          };
+
+          const delBtn = document.createElement("button");
+          delBtn.className = "btn btn-delete";
+          delBtn.textContent = "✖ Удалить";
+          delBtn.onclick = async () => {
+            if (!confirm("Удалить товар «" + p.title + "»?")) return;
+            await fetch("/api/products/" + p.id, { method: "DELETE" });
+            loadProducts();
+          };
+
+          buttons.appendChild(editBtn);
+          buttons.appendChild(delBtn);
+
+          row.appendChild(info);
+          row.appendChild(buttons);
+          list.appendChild(row);
+        });
+      }
+
+      loadProducts();
+    </script>
+  </body>
+</html>

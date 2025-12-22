@@ -1,0 +1,149 @@
+.header {
+  width: 100%;
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(178, 107, 255, 0.15);
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-title {
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #b57dff, #78e4ff);
+
+  /* Добавляем основное свойство */
+  background-clip: text;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow: 0 0 18px rgba(181, 125, 255, 0.45);
+  transition: 0.25s ease;
+}
+
+.logo {
+  font-size: 1.4rem;
+  color: #b26bff;
+  text-shadow: 0 0 10px rgba(178, 107, 255, 0.8);
+}
+
+.theme-toggle {
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid rgba(178, 107, 255, 0.4);
+  color: #b26bff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+  backdrop-filter: blur(4px);
+  margin-right: 60px;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 12px rgba(178, 107, 255, 0.9);
+}
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* расстояние между кнопкой темы и корзиной */
+  margin-right: 60px; /* ← отступ от правого края */
+}
+.cart-emoji {
+  font-size: 26px;
+  margin-right: 8px;
+}
+.cart-count {
+  font-size: 26px; /* ← Увеличили цифру */
+  font-weight: 700;
+  color: #7dfbff; /* неоновый голубой */
+  margin-left: 10px;
+  text-shadow: 0 0 12px #7dfbff;
+  display: flex;
+  align-items: center;
+}
+.back-admin-btn {
+  background: rgba(120, 60, 180, 0.2);
+  border: 2px solid #b078ff;
+  padding: 8px 18px;
+  border-radius: 14px;
+  font-size: 16px;
+  color: #c8a6ff;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.back-admin-btn:hover {
+  background: rgba(180, 80, 255, 0.25);
+  box-shadow: 0 0 10px #c28bff;
+  color: #fff;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.brand-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  margin-right: 12px;
+  box-shadow: 0 0 10px rgba(178, 107, 255, 0.9),
+    0 0 20px rgba(178, 107, 255, 0.8), 0 0 35px rgba(150, 60, 255, 0.75),
+    inset 0 0 12px rgba(200, 140, 255, 0.7);
+  transition: 0.3s;
+}
+
+.brand-icon:hover {
+  box-shadow: 0 0 15px rgba(200, 150, 255, 1), 0 0 35px rgba(180, 80, 255, 0.95),
+    0 0 55px rgba(140, 50, 255, 0.9), inset 0 0 20px rgba(210, 160, 255, 0.9);
+  transform: scale(1.06);
+}
+
+.brand-title {
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--text-color);
+}
+@keyframes pulseGlow {
+  0% {
+    filter: drop-shadow(0 0 10px #b26bff);
+  }
+  50% {
+    filter: drop-shadow(0 0 25px #9a3cff);
+  }
+  100% {
+    filter: drop-shadow(0 0 10px #b26bff);
+  }
+}
+
+.brand-icon {
+  animation: pulseGlow 3.2s infinite ease-in-out;
+}
+.back-admin-btn {
+  padding: 6px 12px;
+  border: 1px solid #7df9ff;
+  background: transparent;
+  color: #7df9ff;
+  margin-right: 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.25s;
+}
+
+.back-admin-btn:hover {
+  background: #7df9ff;
+  color: #000;
+  box-shadow: 0 0 12px #7df9ff;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Neon Admin — Панель</title>
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+
+  <body class="admin-page" data-theme="dark">
+    <div class="admin-container">
+      <!-- ЛОАДЕР -->
+      <div id="admin-loader" class="admin-loader hidden">
+        <div class="spinner"></div>
+        <p>Загружаем товары...</p>
+      </div>
+
+      <!-- ШАПКА -->
+      <header class="admin-header">
+        <div class="admin-header-left">
+          <div class="admin-brand">
+            <span class="admin-brand-logo">💎</span>
+            <span class="admin-brand-text">Oleg &amp; Neuro — Neon Admin</span>
+          </div>
+        </div>
+
+        <div class="admin-header-right">
+          <button id="back-to-shop" class="admin-btn primary">← На сайт</button>
+          <button id="theme-toggle" class="admin-btn ghost">🌙 Dark</button>
+          <button id="logout-btn" class="admin-btn danger">Выйти</button>
+        </div>
+      </header>
+
+      <!-- КОНТРОЛЫ -->
+      <section class="admin-controls">
+        <div class="controls-left">
+          <input
+            type="text"
+            id="search-input"
+            class="admin-search"
+            placeholder="Поиск по названию или описанию..."
+          />
+
+          <select id="category-filter" class="admin-select">
+            <option value="all">Все категории</option>
+            <option value="phones">Телефоны</option>
+            <option value="laptops">Ноутбуки</option>
+            <option value="audio">Аудио</option>
+            <option value="watches">Часы</option>
+            <option value="consoles">Приставки</option>
+          </select>
+        </div>
+        <div class="price-filter">
+          <input type="number" id="price-min" placeholder="Мин. цена" />
+          <input type="number" id="price-max" placeholder="Макс. цена" />
+        </div>
+
+        <select id="sort-select" class="admin-select">
+          <option value="none">Без сортировки</option>
+          <option value="price-asc">Цена: дешёвые → дорогие</option>
+          <option value="price-desc">Цена: дорогие → дешёвые</option>
+          <option value="title-asc">Название: A → Z</option>
+          <option value="title-desc">Название: Z → A</option>
+          <option value="date-desc">Новые → старые</option>
+          <option value="date-asc">Старые → новые</option>
+        </select>
+
+        <div class="controls-right">
+          <span id="items-count" class="items-count">0 товаров</span>
+        </div>
+      </section>
+
+      <!-- СПИСОК ТОВАРОВ -->
+      <main class="admin-main">
+        <div id="products-grid" class="admin-grid"></div>
+      </main>
+
+      <!-- ПАГИНАЦИЯ -->
+      <footer class="admin-footer">
+        <div id="pagination" class="pagination"></div>
+      </footer>
+    </div>
+
+    <!-- 🔮 Neon Delete Modal -->
+    <div id="delete-modal" class="modal-backdrop hidden">
+      <div class="modal-box">
+        <h2>🗑 Удалить товар?</h2>
+        <p id="delete-item-title">Вы уверены, родной?</p>
+
+        <div class="modal-actions">
+          <button id="delete-confirm" class="admin-btn danger">
+            Да, удалить
+          </button>
+          <button id="delete-cancel" class="admin-btn ghost">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./admin.js"></script>
+    <script>
+      // Глобальная функция для кнопки "Редактировать"
+      function openEditProduct(id) {
+        window.location.href = "admin-edit-product.html?id=" + id;
+      }
+    </script>
+  </body>
+</html>

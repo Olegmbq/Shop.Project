@@ -1,0 +1,31 @@
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #8f4bff, #b073ff);
+  padding: 14px 22px;
+  color: white;
+  border-radius: 14px;
+  box-shadow: 0 0 15px rgba(170, 110, 255, 0.8);
+  font-size: 1.1rem;
+  font-weight: 600;
+  z-index: 9999;
+  animation: toastIn 0.4s ease forwards;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+body.light .toast {
+  background: linear-gradient(135deg, #6f43ff, #9a6aff);
+  box-shadow: 0 0 12px rgba(110, 70, 255, 0.5);
+}

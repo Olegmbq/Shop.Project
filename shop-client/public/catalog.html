@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Каталог товаров</title>
+
+    <!-- ПРАВИЛЬНЫЙ путь к CSS -->
+    <link rel="stylesheet" href="./catalog.css" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f8f8f8;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      /* Сетка товаров */
+      .catalog {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+      }
+
+      /* Карточка */
+      .product-card {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+      }
+
+      .product-card:hover {
+        transform: scale(1.03);
+      }
+
+      .product-card img {
+        width: 100%;
+        border-radius: 10px;
+        height: 160px;
+        object-fit: cover;
+      }
+
+      .product-title {
+        font-weight: bold;
+        font-size: 18px;
+        margin-top: 10px;
+      }
+
+      .product-price {
+        color: #e60000;
+        font-size: 16px;
+        margin: 5px 0;
+      }
+
+      .product-category {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      .product-desc {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <!-- 🔥 правильная шапка -->
+      <div class="brand-header">
+        <div class="brand-left">
+          <img src="./logo.png" alt="logo" class="brand-logo" />
+          <div class="brand-title">
+            Oleg & Neuro Code <span class="studio">Studio</span>
+          </div>
+        </div>
+
+        <div class="cart-button" onclick="window.location.href='cart.html'">
+          🛒 <span id="cart-count">0</span>
+        </div>
+      </div>
+
+      <div class="brand-divider"></div>
+
+      <h1 class="neon-title">
+        <span class="icons">🛍️ 📦 💎</span>
+        Каталог товаров
+      </h1>
+
+      <!-- Панель категорий — стоит ПРАВИЛЬНО -->
+      <div id="category-panel" class="category-panel"></div>
+
+      <!-- Сюда будут грузиться карточки -->
+      <div id="catalog" class="catalog"></div>
+
+      <script type="module" src="./catalog.js"></script>
+    </div>
+    <!-- page-wrapper -->
+
+    <footer class="neon-footer reveal-footer">
+      <div class="footer-line"></div>
+
+      <div class="footer-text floating">
+        💜 Made with ♥ by
+        <span class="glow-word">Oleg</span>
+        <span class="infinity">∞</span>
+        <span class="glow-word">Neuro</span>
+        💜
+      </div>
+
+      <div class="footer-line"></div>
+    </footer>
+
+    <script>
+      const footer = document.querySelector(".reveal-footer");
+
+      function revealOnScroll() {
+        const rect = footer.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          footer.classList.add("visible");
+        }
+      }
+
+      window.addEventListener("scroll", revealOnScroll);
+      revealOnScroll();
+    </script>
+
+    <script>
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        document.getElementById("cart-count").innerText = cart.length;
+      }
+      updateCartCount();
+    </script>
+
+    <script type="module">
+      import { addToCart, updateCartCount } from "./cart-core.js";
+
+      updateCartCount(); // обновляем число при загрузке
+
+      window.addToCart = addToCart;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Neon Admin 2025 — Oleg & Neuro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+
+  <body>
+    <div class="admin-page">
+      <!-- HEADER -->
+      <header class="admin-header">
+        <div class="admin-brand">
+          <div class="admin-logo-circle">ON</div>
+          <div class="admin-brand-text">
+            <div class="admin-brand-title">Oleg & Neuro</div>
+            <div class="admin-brand-sub">Neon Admin 2025</div>
+          </div>
+        </div>
+
+        <div class="admin-header-right">
+          <div class="admin-status-pill" id="admin-status">
+            🟡 Подключаемся к API...
+          </div>
+          <button class="admin-logout-btn" id="admin-logout">⏻ Выйти</button>
+        </div>
+      </header>
+
+      <!-- MAIN LAYOUT -->
+      <div class="admin-layout">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+          <h2>Навигация</h2>
+          <button class="side-link active" id="nav-products">📦 Товары</button>
+          <button class="side-link" id="nav-add">➕ Добавить товар</button>
+
+          <!-- 🔥 ДОБАВЛЯЕМ КНОПКУ ЗАКАЗОВ -->
+          <button class="side-link" id="nav-orders">📑 Заказы</button>
+
+          <button class="side-link" id="nav-stats">📊 Статистика</button>
+        </aside>
+
+        <!-- CONTENT -->
+        <main class="admin-content">
+          <!-- Панель сверху -->
+          <section class="admin-top-panel">
+            <h1>Управление товарами</h1>
+            <button class="neon-btn" id="add-product-btn">
+              ➕ Новый товар
+            </button>
+          </section>
+
+          <!-- Карточки статистики -->
+          <section class="admin-stats">
+            <div class="stat-card">
+              <div class="stat-label">Всего товаров</div>
+              <div class="stat-value" id="stat-products">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Категорий</div>
+              <div class="stat-value" id="stat-categories">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Последнее обновление</div>
+              <div class="stat-value" id="stat-updated">—</div>
+            </div>
+          </section>
+
+          <!-- Таблица товаров -->
+          <section class="admin-table-section">
+            <div class="table-header">
+              <h2>Список товаров</h2>
+              <span class="table-hint">Данные приходят из API</span>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Категория</th>
+                    <th>Цена</th>
+                    <th>Картинка</th>
+                    <th class="actions-col">Действия</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-products-body">
+                  <tr>
+                    <td colspan="6" class="loading-row">
+                      Загрузка товаров из API...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- Модалка для удаления / будущего редактирования -->
+    <div class="admin-modal hide" id="admin-modal">
+      <div class="admin-modal-box">
+        <h2 id="admin-modal-title">Подтверждение</h2>
+        <p id="admin-modal-text"></p>
+
+        <div class="admin-modal-actions">
+          <button class="neon-btn ghost" id="admin-modal-cancel">Отмена</button>
+          <button class="neon-btn danger" id="admin-modal-confirm">
+            Подтвердить
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./admin.js"></script>
+  </body>
+</html>

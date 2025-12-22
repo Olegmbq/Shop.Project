@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Login</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 40px;
+      }
+      input {
+        padding: 8px;
+        margin-right: 5px;
+      }
+      button {
+        padding: 8px 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Admin Login</h2>
+
+    <input id="login" placeholder="admin" />
+    <input id="password" type="password" placeholder="••••••" />
+    <button onclick="login()">Войти</button>
+
+    <script>
+      function login() {
+        const log = document.getElementById("login").value;
+        const pass = document.getElementById("password").value;
+
+        if (log === "admin" && pass === "12345") {
+          localStorage.setItem("isAdmin", "true");
+          window.location.href = "/admin/dashboard.html";
+        } else {
+          alert("Неверный логин или пароль");
+        }
+      }
+    </script>
+  </body>
+</html>

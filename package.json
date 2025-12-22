@@ -1,0 +1,26 @@
+{
+  "name": "shop-project",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "server": "node shop-server/server.js",
+    "api": "node shop-api/app.js",
+    "admin": "npm start --prefix shop-admin",
+    "client": "npm start --prefix shop-client",
+    "dev": "concurrently \"npm run server\" \"npm run api\" \"npm run admin\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.6.2",
+    "concurrently": "^9.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.3"
+  }
+}

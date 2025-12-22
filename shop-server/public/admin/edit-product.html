@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Редактировать товар</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f6f6f6;
+        padding: 30px;
+      }
+      h1 {
+        font-size: 42px;
+        color: #222;
+        margin-bottom: 20px;
+      }
+      form {
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      input,
+      textarea {
+        padding: 12px;
+        font-size: 16px;
+        border: 1px solid #aaa;
+        border-radius: 8px;
+      }
+      button {
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .save-btn {
+        background: #6a5acd;
+        color: #fff;
+        font-weight: 600;
+      }
+      .back-btn {
+        margin-top: 15px;
+        background: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Редактировать товар</h1>
+
+    <form id="editForm">
+      <input type="text" id="title" placeholder="Название" required />
+      <input type="number" id="price" step="0.01" placeholder="Цена" required />
+      <textarea
+        id="description"
+        rows="4"
+        placeholder="Описание"
+        required
+      ></textarea>
+      <input
+        type="text"
+        id="image_url"
+        placeholder="URL изображения (или /uploads/...)"
+      />
+      <input
+        type="text"
+        id="category"
+        placeholder="Категория (phones / laptops / audio / watches)"
+      />
+
+      <button class="save-btn" type="submit">💾 Сохранить изменения</button>
+    </form>
+
+    <button class="back-btn" onclick="history.back()">← Назад</button>
+
+    <script>
+      const id = new URLSearchParams(window.location.search).get("id");
+
+      async function loadProduct() {
+        const res = await fetch("/api/products/" + id);
+        const data = await res.json();
+
+        document.getElementById("title").value = data.title;
+        document.getElementById("price").value = data.price;
+        document.getElementById("description").value = data.description || "";
+        document.getElementById("image_url").value = data.image_url || "";
+        document.getElementById("category").value = data.category || "";
+      }
+
+      document
+        .getElementById("editForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const body = {
+            title: document.getElementById("title").value.trim(),
+            price: document.getElementById("price").value,
+            description: document.getElementById("description").value.trim(),
+            image_url: document.getElementById("image_url").value.trim(),
+            category: document.getElementById("category").value.trim(),
+          };
+
+          await fetch("/api/products/" + id, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+
+          alert("✔ Товар обновлён");
+        });
+
+      loadProduct();
+    </script>
+  </body>
+</html>
